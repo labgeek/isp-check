@@ -1,0 +1,10 @@
+TODO list:
+
+1.  add total stats for each month
+	 - day in current month with most downtime
+	 - hour range with most downtime for that month
+	 - month so far with most downtime
+2.  Rotate off total time for each month (archive log file)
+3.  Ability to switch router you are pinging
+4.  Generate configuration file screen (CGI)
+5.  Add days of week to daily summary screen

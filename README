@@ -1,0 +1,56 @@
+GATEMON v0.3 - By JD Durick (jdurick@mitre.org)
+Inital Release - August 6th, 2003
+
+Purpose/Overview:
+The GATEMON scripts were originally written to monitor my ISP's connectivity.  Gatehouse networks which originates in Delaware are anything but reliable and since I am spending $70 for service and 4 static ips, I feel it necessary to keep track of my uptime and notify them anytime it does go down.
+
+The GATEMON program uses 2 perl scripts, gatemon.pl, and gview.pl.  These scripts will:
+
+1.  monitor your internet connection and check the connectivity of your ISP
+2.  log all downtimes
+3.  calculate the percentage of downtime on a daily/monthly basis
+4.  create a static web page featuring the results listed above
+
+
+Current packages required:
+1.  Net::Ping - required for the pinging your gateway (or upstream router)
+2.  Getopt::Long - used for command line options
+3.  Time::HiRes - used for more granular time precision
+
+Installation:
+1.  Unzip the file:  isp-check.tar.gz (tar zxvf isp-check.tar.gz) - linux style.
+2.  set cron job to run isp-check.pl every minute with router of choice (currently looking to rotate ICMP friendly routers so that you are not constantly hitting one router all the time).
+
+* * * * * /usr/local/bin/gatemon.pl >/dev/null 2>/dev/null
+
+the will run every minute and log all uptime and downtime to your specified file
+
+3.  The gateview.pl script will calculate statistics and publish these on to a static web page configured by you.
+
+OUTPUT File configuration
+
+1 28 16:48 - 0 lost
+
+1.  Field 1:  either will be a 1 for success or 0 for false
+2.  28 represents the day of the month
+3.  16:48 represents the time of the day
+4.  0 or 1 will be the number of packets lost during the PING (the threshold can be customized)
+
+
+HISTORY:
+v0.1a - 08-06-2003:  This is the initial release and needs plenty of work!  Basically, I put this together in a night but will keep playing with it as long as I have some time....
+
+v0.2a - 08-26-2003:  Added link to daily minutes breakdown which takes you to another file listing when the connectivity dropped.  Also added function to convert overall minutes down to days, hours, minutes, and seconds down.
+
+v0.3 - 04-28-04:  modularized each of the function into separate perl files
+
+v1.0 - 06-03-04:  Add yearly breakdown with graphing (using GD::Graph) of downtime minutes
+
+v1.1 - 06-07-04:  Cleaned up some code, added configuration area within code and removed hard coded paths - now you should be able to configure the vars in isp-report.pl and it should be ok
+
+TODO:
+1.  Create ability to create configuration file from website
+
+LICENSE:
+
+GNU GPL v2
